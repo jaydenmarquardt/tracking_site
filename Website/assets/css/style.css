@@ -1,0 +1,333 @@
+body{
+    margin:unset;
+    font-family: "Roboto", Sans-serif;
+    letter-spacing: 2px;
+}
+
+header{
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    height: fit-content;
+}
+
+footer
+{
+    background: #00072f;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+hr  {
+    margin: 30px;
+    border: 1px solid #c1c0c0;
+}
+
+.button, input[type="submit"] {
+    text-decoration: none;
+    color: white;
+    background: #282e50;
+    border: 4px solid white;
+    padding: 20px 40px;
+    display: inline-block;
+    border-radius: 8px;
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.button.red
+{
+    color: #ffffff;
+    background: #ea3737;
+}
+
+
+.button:hover, input[type="submit"]:hover
+{
+    color: #282e50;
+    background: white;
+    border-color: #282e50;
+}
+
+.button.red:hover
+{
+    color: #ea3737;
+    border-color: #ea3737;
+    background: #ffffff;
+}
+
+
+
+.button-secondary{
+    background: #783fa1;
+}
+.button-secondary:hover
+{
+    color: #783fa1;
+    background: white;
+    border-color: #783fa1;
+}
+
+
+.hero
+{
+    height: 60vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: relative;
+}
+
+.hero.short
+{
+    height: 25vh;
+}
+.hero.big
+{
+    height: 100vh;
+}
+.hero-overlay
+{
+    position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background: rgb(90,185,135);
+    background: linear-gradient(90deg, rgba(90,185,135,0.5) 0%,
+    rgba(65,134,157,0.5) 33%,
+    rgba(57,65,145,0.5) 66%,
+    rgba(121,63,161,0.5) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+    text-align: center;
+}
+
+
+.hero h1
+{
+    margin:0 0 20px 0;
+    font-size: 60px;
+    font-weight: 900;
+    text-shadow: 2px 2px 9px #464646;
+}
+.hero h2
+{
+    margin:0;
+    font-size: 26px;
+    font-weight: 900;
+    text-shadow: 2px 2px 9px #464646;
+}
+
+.banner
+{
+    background: #282e50;
+    padding: 40px 0;
+    color:white;
+}
+
+.block-margin
+{
+    margin: 40px 0;
+}
+.block-margin-bottom
+{
+    margin-bottom: 40px;
+}
+.block-margin-top
+{
+    margin-top: 40px;
+}
+.container
+{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.big-icon
+{
+    font-size:80px;
+    display: block;
+    text-align: center;
+}
+
+.tracker{
+    font-size: 80px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.block
+{
+    background: #282e50;
+    margin: 20px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+
+}
+
+.block .tracker
+{
+    font-size: 50px;
+}
+
+.title
+{
+    text-align: center;
+    font-size: 60px;
+    color: #282e50;
+}
+
+
+.msg {
+    margin: 20px 0;
+    padding: 20px;
+    border: #282e50 3px solid;
+    background: #e1e3ec;
+}
+
+.error {
+    margin: 20px 0;
+    padding: 20px;
+    border: #af0505 3px solid;
+    background: #dcbcbc;
+}
+
+.textbox
+{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #c1c0c0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 4px #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.textbox i
+{
+    font-size: 30px;
+    color: #a7a7a7;
+    margin-right: 10px;
+    min-width: 40px;
+}
+.textbox label
+{
+    margin-right: 10px;
+    color: #a7a7a7;
+}
+.textbox input
+{
+    border: none;
+    font-size: 25px;
+    flex-grow: 1;
+}
+.textbox input:focus
+{
+    outline:none;
+}
+
+.textbox:hover
+{
+    box-shadow: 0 0 5px 4px #a0aefda1;
+}
+.textbox:hover label, .textbox:hover i
+{
+    color:#a0aefd;
+}
+
+.col-1-3 .textbox input
+{
+    width: 100px;
+    flex-grow: unset;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Grid*/
+.grid
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.grid-center
+{
+    justify-content: center;
+}
+
+.col-1-1, .col-2-2, .col-3-3, .col-4-4, .col-5-5, .col-6-6{
+    width: 100%;
+    min-width: 100%;
+}
+.col-1-2, .col-2-4, .col-3-6{
+    width: 50%;
+    min-width: 50%;
+}
+.col-1-3, .col-2-6{
+    width: 33.333%;
+    min-width: 33.333%;
+}
+.col-1-4{
+    width: 25%;
+    min-width: 25%;
+}
+.col-1-5{
+    width: 20%;
+    min-width: 20%;
+}
+.col-1-6{
+    width: 16.666%;
+    min-width: 16.666%;
+}
+/*2*/
+.col-2-3{
+    width: 66.666%;
+    min-width: 66.666%;
+}
+.col-2-5{
+    width: 40%;
+    min-width: 40%;
+}
+/*3*/
+.col-3-4{
+    width: 75%;
+    min-width: 75%;
+}
+.col-3-5{
+    width: 60%;
+    min-width: 60%;
+}
+/*4*/
+.col-4-5{
+    width: 80%;
+    min-width: 80%;
+}
+/*5*/
+.col-5-6{
+    width: 83.333%;
+    min-width: 83.333%;
+}
