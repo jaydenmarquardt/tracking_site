@@ -48,12 +48,7 @@ function email_exists($email)
  */
 function update_user()
 {
-    if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
-    {
-        $_GET["admin_failed"] = 3;
-        return false;
 
-    }
     $password =  filter_var($_POST["password"], FILTER_SANITIZE_STRING);
     $password_confirm =  filter_var($_POST["password_confirm"], FILTER_SANITIZE_STRING);
     $email =  filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
@@ -67,7 +62,12 @@ function update_user()
         return false;
     }
 
+    if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+    {
+        $_GET["admin_failed"] = 3;
+        return false;
 
+    }
 
 
     $date = new DateTime(($dob));
@@ -135,22 +135,22 @@ function get_login_attempts()
 function register()
 {
     $page = get_page_by_slug("login");
-    if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
-    {
-        return 1;//Email not valid
-    }
+
     $username =  filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $password =  filter_var($_POST["password"], FILTER_SANITIZE_STRING);
     $password_confirm =  filter_var($_POST["password_confirm"], FILTER_SANITIZE_STRING);
     $email =  filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
     $email_confirm =  filter_var($_POST["email_confirm"], FILTER_SANITIZE_EMAIL);
-    $first_name =  filter_var($_POST["first_name"], FILTER_SANITIZE_STRING);
-    $last_name =  filter_var($_POST["last_name"], FILTER_SANITIZE_STRING);
-    $dob =  filter_var($_POST["dob"], FILTER_SANITIZE_STRING);
 
-    if(empty($username) || empty($password) || empty($email) || empty($first_name) || empty($last_name) || empty($dob))
+    if(empty($username) || empty($password) || empty($email))
     {
         $_GET["register_failed"] = 2;
+        return $page;
+    }
+    if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+    {
+        $_GET["register_failed"] = 1;
+
         return $page;
     }
     if($password_confirm != $password)
@@ -163,14 +163,6 @@ function register()
         $_GET["register_failed"] = 6;
         return $page;
     }
-    $date = new DateTime(($dob));
-    $now = new DateTime();
-    $age = $now->diff($date)->y;
-    if($age < 13)
-    {
-        $_GET["register_failed"] = 7;
-        return $page;
-    }
 
     if($email_confirm != $email)
     {
@@ -181,9 +173,6 @@ function register()
     $username = mysqli_real_escape_string(Database::get(), $username);
     $email = mysqli_real_escape_string(Database::get(), $email);
     $password = mysqli_real_escape_string(Database::get(), $password);
-    $first_name = mysqli_real_escape_string(Database::get(), $first_name);
-    $last_name = mysqli_real_escape_string(Database::get(),$last_name);
-    $dob = mysqli_real_escape_string(Database::get(), $dob);
 
     if(username_exists($username))
     {
@@ -198,7 +187,7 @@ function register()
     $id = count(Database::select("*", "logins"));
     $passwordEncrypted = md5($password);
 
-    Database::insert("logins", "ID, username, email, password, first_name, last_name, dob", "$id, '$username', '$email', '$passwordEncrypted', '$first_name', '$last_name', '$dob'");
+    Database::insert("logins", "ID, username, email, password, first_name, last_name, dob", "$id, '$username', '$email', '$passwordEncrypted', '', '', null");
 
 
     return login($username, $password);
@@ -206,11 +195,20 @@ function register()
 }
 
 /**
+ * This removes the user record *
+ */
+function remove_account()
+{
+    Database::delete("logins", "ID = '".get_user()["ID"]."'");
+   logout();
+}
+
+/**
  * This logs the user out  *
  */
 function logout(){
     session_destroy();
-    //change db login status
+    redirect_to("home");
 }
 
 /**
@@ -244,7 +242,7 @@ function login($username = 0, $password = 0)
     $_SESSION['user'] = $user;
 
 
-    return get_page_by_slug("admin");
+    redirect_to("admin");
 }
 
 /**
@@ -307,3 +305,18 @@ function get_ip()
 {
     return $_SERVER['REMOTE_ADDR'];
 }
+
+/**
+ * This sends an email  *
+ */
+function email($to, $subject, $body)
+{
+    $headers = "From: jayden@marquardt.id.au\r\n";
+    $headers .= "Reply-To: jayden@marquardt.id.au\r\n";
+    $headers .= "CC: jayden@marquardt.id.au\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    mail($to, $subject, $body, $headers);
+
+}
+

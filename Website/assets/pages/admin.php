@@ -55,6 +55,15 @@ if (array_key_exists("admin_failed", $_GET)) {
         case 7:
             $errorUser = "You must be over the age of 13 to use this site.";
             break;
+        case 10:
+            $errorReport = "You must fill-out all the required fields to make a report.";
+            break;
+        case 9:
+            $errorReport = "Email is not valid";
+            break;
+        case 11:
+            $errorReport = "Date must be in the future, nice try ;) ";
+            break;
     }
 
 }
@@ -81,6 +90,10 @@ if (array_key_exists("updated", $_GET)) {
             $message_user = "Your user information and password has been updated.";
 
             break;
+        case 5:
+            $messageReport = "Your report is now running.";
+
+            break;
     }
 }
 
@@ -104,10 +117,58 @@ do_block("hero", ["class" => "short", "content" => $hero_content, "image" => "/a
 Welcome backend Banner
  **/
 ob_start(); ?>
-<h1>Welcome to the back end</h1><p>From here you can change all stats.</p>
+<h1>Welcome to the back end</h1><p>You can now generate reports</p>
 <?php $banner_content_left = ob_get_clean(); ob_start(); ?>
 <?php $banner_content_right = ob_get_clean();
 do_block("banner", ["class" => "block-margin-bottom", "icon" => "far fa-cog", "content_left" => $banner_content_left, "content_right" => $banner_content_right]);
+
+
+
+/**
+Tracker settings form
+ **/
+?>
+<div class="container block-margin">
+    <div class="forms">
+        <h2>Enter details below to start a report.</h2>
+        <div class="msg">You will receive your report link via email after the selected date</div>
+
+        <?php if ($errorReport): ?>
+            <div class="error"><?php echo $errorReport; ?></div><?php endif; ?>
+        <?php if ($messageReport): ?>
+            <div class="msg"><?php echo $messageReport; ?></div><?php endif; ?>
+
+        <form method="post" action="/admin" class="">
+
+            <div class="textbox">
+                <i class="fas fa-calendar"></i> <label for="date_end">Date to end: </label>
+                <input type="date" name="date_end" id="date_end"
+                       value=""/>
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-envelope"></i> <label for="email">Email to send to: </label>
+                <input type="email" name="email" id="email"
+                       value="<?php echo $email; ?>"/>
+            </div>
+
+            <input type="submit" name="report" value="Start Report"/>
+
+
+        </form>
+    </div>
+</div>
+<?php
+
+/**
+Tracking Setting Banner
+ **/
+ob_start(); ?>
+<h1>Tracking settings</h1><p>From here you can change all stats.</p>
+<?php $banner_content_left = ob_get_clean(); ob_start(); ?>
+<?php $banner_content_right = ob_get_clean();
+do_block("banner", ["class" => "block-margin-bottom", "icon" => "far fa-cog", "content_left" => $banner_content_left, "content_right" => $banner_content_right]);
+
 
 /**
 Tracker settings form
@@ -196,7 +257,7 @@ User profile form
 ?>
 <div class="container block-margin">
     <div class="forms">
-        <h2>Select a tracking field to update.</h2>
+        <h2>Update your user profile.</h2>
         <div class="msg">*Leave password fields empty to leave the same</div>
         <?php if ($errorUser): ?>
             <div class="error"><?php echo $errorUser; ?></div><?php endif; ?>

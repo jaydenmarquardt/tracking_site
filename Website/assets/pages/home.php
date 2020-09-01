@@ -10,7 +10,7 @@ $username = get_username();
 $other = [
     ["Active now", "This is how many users are currently browsing the site.", "fas fa-plug", "active", get_tracking("active")],
     ["Locations", "This is how many unique locations users have visited from.", "fas fa-globe", "locations", count(get_locations())],
-    ["This is the average daily visit count.", "sss", "fas fa-calendar-check", "daily", get_tracking("daily")],
+    ["This is the average daily visit count.", "sss", "fas fa-calendar-check", "daily", intval(get_tracking("daily"))],
     ["Registered Users", "This is how many users are registered on the site.", "fas fa-users", "users", count(get_users())],
 
 ];

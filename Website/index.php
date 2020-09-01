@@ -57,7 +57,16 @@ function init()
      * This starts the tracking  *
      */
     tracking();
+
+
     session_start();
+
+
+    if($_GET["page"] == "cron"){
+        check_reports();
+        die;
+    }
+
 
     global $page_id;
     global $page;

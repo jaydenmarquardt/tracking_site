@@ -14,8 +14,11 @@ global $page;
         <meta charset="utf-8">
         <meta name="unisite" value="notranslate">
         <meta name="referrer" content="strict-origin">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title><?php echo $page["title"];?></title>
+        <link rel="icon" href="/assets/images/favicon.png" type="image/png" sizes="16x16">
+
+        <title><?php echo $page["title"];?> - Uni Assignment</title>
 
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="/assets/css/style.css">

@@ -12,6 +12,15 @@ function debug($debug, $die = 0)
 }
 
 /**
+ * This is simply a redirect function  *
+ */
+function redirect_to($page)
+{
+    header("Location: /$page");
+    exit();
+}
+
+/**
  * This makes a string safe for url and db keys  *
  */
 function slugify($string){
@@ -165,7 +174,8 @@ function get_page_from_url()
         case "login":
             if(is_logged_in())
             {
-                $path = "admin";
+                redirect_to("admin");
+
             }
             else
                 if(array_key_exists("login", $_POST) && $_POST["login"]=="Login")
@@ -180,13 +190,38 @@ function get_page_from_url()
             break;
         case "logout":
             logout();
-            $path = "home";
             break;
         case "admin":
+
+            error_log(print_r($_POST, 1));
             if(!is_logged_in())
             {
-                $path = "login";
-                $_GET["login_failed"] = 1;
+                redirect_to("login/?login_failed=1");
+            }else if(array_key_exists("remove_account", $_GET) && $_GET["remove_account"]=="true")
+            {
+               remove_account();
+
+            }else if(array_key_exists("report", $_POST) && $_POST["report"]=="Start Report")
+            {
+                if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+                {
+                    $_GET["admin_failed"] = 9;
+
+                }
+                else if(empty($_POST["email"]) || empty($_POST["date_end"]))
+                {
+                    $_GET["admin_failed"] = 10;
+                }
+                else if(date("Ymd", strtotime($_POST["date_end"]) < date("Ymd")))
+                {
+                    $_GET["admin_failed"] = 11;
+                }else{
+                    $_GET["updated"] = 5;
+
+                    create_report($_POST["email"], date("Ymd", strtotime($_POST["date_end"])));
+
+                }
+
             }else if(array_key_exists("update", $_POST) && $_POST["update"]=="Update")
             {
                 $_GET["updated"] = 1;
@@ -199,9 +234,7 @@ function get_page_from_url()
             }else if(array_key_exists("update_user", $_POST) && $_POST["update_user"]=="Update")
             {
 
-                if( update_user()){
-
-                }
+                update_user();
 
             }else if(array_key_exists("message_board", $_POST) && $_POST["message_board"]=="Update")
             {

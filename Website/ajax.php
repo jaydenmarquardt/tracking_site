@@ -11,7 +11,8 @@ $user_ip = getenv('REMOTE_ADDR');
 include_once ("database.php");
 include_once ("functions.php");
 include_once ("user.php");
-include_once ("tracking.php");
+include ("tracking.php");
+
 Database::connect("localhost", "jaydenun_db", "jaydenun_uni-site", "PHb$1Oy7APVm");
 
 $now = date("Ymdhis");
@@ -30,7 +31,7 @@ $response["actives"] = $actives;
 $response["tracking"] = [
     "total" => get_tracking("total"),
     "active" => get_tracking("active"),
-    "daily" => get_tracking("daily"),
+    "daily" => intval(get_tracking("daily")),
     "users" => get_tracking("users"),
     "unique_users" => get_tracking("unique_users"),
     "locations" => get_tracking("locations"),

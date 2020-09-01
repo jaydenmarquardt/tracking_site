@@ -32,6 +32,9 @@ if(array_key_exists("register_failed", $_GET))
         case 0:
             $errorRegister = "An error has occurred.";
             break;
+        case 1:
+            $errorRegister = "Email is not valid";
+            break;
         case 2:
             $errorRegister = "You must fill-out all the fields to create account.";
             break;
@@ -133,19 +136,6 @@ User Register Form
             <div class="textbox">
                 <i class="fas fa-check-square"></i>
                 <input type="email" placeholder="Confirm your Email" name="email_confirm" value="<?php echo $_POST["email_confirm"];?>"/>
-            </div>
-            <hr>
-            <div class="textbox">
-                <i class="far fa-user"></i>
-                <input type="text" placeholder="Enter your first name" name="first_name" value="<?php echo $_POST["first_name"];?>"/>
-            </div>
-            <div class="textbox">
-                <i class="far fa-users"></i>
-                <input type="text" placeholder="Enter your last name" name="last_name" value="<?php echo $_POST["last_name"];?>"/>
-            </div>
-            <div class="textbox">
-                <i class="far fa-calendar-alt"></i>
-                <input type="date" placeholder="Enter your date of birth" name="dob" value="<?php echo $_POST["dob"];?>"/>
             </div>
             <hr>
             <div class="textbox">
