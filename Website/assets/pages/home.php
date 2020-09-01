@@ -20,19 +20,19 @@ $devices = [
     ["Android / Other", "This is the average daily visit count.", "fab fa-android", "os_other", get_tracking("os_other")],
 ];
 $browsers = [
-    ["Safari", "sss", "fab fa-safari", "browser_safari", get_tracking("browser_safari")],
-    ["Google Chrome", "sss", "fab fa-chrome", "browser_chrome", get_tracking("browser_chrome")],
-    ["Firefox", "sss", "fab fa-firefox", "browser_firefox", get_tracking("browser_firefox")],
-    ["Other", "sss", "fab fa-internet-explorer", "browser_other", get_tracking("browser_other")],
+    ["Safari", "This is how many users used Safari", "fab fa-safari", "browser_safari", get_tracking("browser_safari")],
+    ["Google Chrome", "This is how many users used Google Chrome", "fab fa-chrome", "browser_chrome", get_tracking("browser_chrome")],
+    ["Firefox", "This is how many users used Firefox", "fab fa-firefox", "browser_firefox", get_tracking("browser_firefox")],
+    ["Other", "This is how many users used a browser not listed", "fab fa-internet-explorer", "browser_other", get_tracking("browser_other")],
 
 ];
 $os = [
-    ["Mac Os", "sss", "fab fa-apple", "os_mac", get_tracking("os_mac")],
-    ["Windows", "sss", "fab fa-windows", "os_windows", get_tracking("os_windows")],
-    ["Linux", "sss", "fab fa-linux", "os_linux", get_tracking("os_linux")],
-    ["iOS", "sss", "fab fa-app-store-ios", "os_ios", get_tracking("os_ios")],
-    ["Android", "sss", "fab fa-android", "os_android", get_tracking("os_android")],
-    ["Other OS", "sss", "fab fa-ubuntu", "os_other", get_tracking("os_other")],
+    ["Mac Os", "This is how many users used Mac OS", "fab fa-apple", "os_mac", get_tracking("os_mac")],
+    ["Windows", "This is how many users used Windows OS", "fab fa-windows", "os_windows", get_tracking("os_windows")],
+    ["Linux", "This is how many users used Linux Os", "fab fa-linux", "os_linux", get_tracking("os_linux")],
+    ["iOS", "This is how many users used an IOS device", "fab fa-app-store-ios", "os_ios", get_tracking("os_ios")],
+    ["Android", "This is how many users used an Android device", "fab fa-android", "os_android", get_tracking("os_android")],
+    ["Other OS", "This is how many users used an OS not listed", "fab fa-ubuntu", "os_other", get_tracking("os_other")],
 
 ];
 
